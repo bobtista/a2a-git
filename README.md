@@ -24,12 +24,6 @@ An A2A-compliant agent that uses Claude and the Git MCP server to handle git ope
    echo "ANTHROPIC_API_KEY=your_api_key_here" > .env
    ```
 
-3. Optional: Configure MCP settings in .env:
-   ```bash
-   echo "MCP_GIT_PATH=your_custom_path" >> .env  # Default: uvx mcp-server-git
-   echo "MCP_TRANSPORT=sse" >> .env              # Default: stdio
-   ```
-
 ## Running the Agent
 
 ### Using UV directly:
@@ -73,14 +67,13 @@ a2a-cli --agent http://localhost:8052
 The agent supports several configuration options:
 
 ```bash
-python __main__.py --help
+python -m git_agent --help
 
 Options:
-  --host TEXT                  Host to bind the server to (default: localhost)
-  --port INTEGER              Port to run the server on (default: 8052)
-  --mcp-path TEXT             Custom path to MCP git server
-  --mcp-transport [stdio|sse]  MCP transport type
-  --help                      Show this message and exit
+  --host TEXT    Host to bind the server to (default: localhost)
+  --port INTEGER Port to run the server on (default: 8052)
+  --repo TEXT    Path to the git repository to manage (default: current directory)
+  --help         Show this message and exit
 ```
 
 ## Features
@@ -88,7 +81,6 @@ Options:
 - Natural language git operations
 - Streaming support for long-running operations
 - Session management for context-aware interactions
-- Support for both stdio and SSE transport
 - Docker support with workspace mounting
 
 ## Contributing
